@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create">Create Student</a>
+<form th:action="@{/search}" method="post">
+    <input type="text" name="search">
+    <button type="submit">Search</button>
+</form>
+
+<table border="1" style="width: 100%">
+    <tr>
+        <th>STT</th>
+        <th>NAME</th>
+        <th COLSPAN="2">ACTION</th>
+    </tr>
+    <tr th:each="element, st:${listStudent}">
+        <td th:text="${st.index + 1}"></td>
+        <td th:text="${element.name}"></td>
+        <td>
+            <a th:href="@{/delete/{id}/(id=${element.id})}">
+                <button>delete</button>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
